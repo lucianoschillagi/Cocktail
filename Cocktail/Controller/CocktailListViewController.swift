@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CocktailListViewController.swift
 //  Cocktail
 //
 //  Created by Luciano Schillagi on 28/09/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CocktailListViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
