@@ -17,6 +17,7 @@
 		A61F07F3215F21870078D1B6 /* CocktailDbClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61F07F2215F21870078D1B6 /* CocktailDbClient.swift */; };
 		A61F07F6215F22720078D1B6 /* CocktailDbConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61F07F5215F22720078D1B6 /* CocktailDbConstants.swift */; };
 		A693CCD5215F242F00CF51E8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A693CCD4215F242F00CF51E8 /* Alamofire.framework */; };
+		A693CCD7215F288E00CF51E8 /* Cocktail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A693CCD6215F288E00CF51E8 /* Cocktail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A61F07F2215F21870078D1B6 /* CocktailDbClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDbClient.swift; sourceTree = "<group>"; };
 		A61F07F5215F22720078D1B6 /* CocktailDbConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailDbConstants.swift; sourceTree = "<group>"; };
 		A693CCD4215F242F00CF51E8 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A693CCD6215F288E00CF51E8 /* Cocktail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cocktail.swift; sourceTree = "<group>"; };
 		C223AFF38C8DDD9B52E4133D /* Pods_Cocktail.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cocktail.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 		A61F07F1215F20E30078D1B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A693CCD6215F288E00CF51E8 /* Cocktail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,8 +110,8 @@
 		A61F07F4215F21AC0078D1B6 /* CocktailDbAPI */ = {
 			isa = PBXGroup;
 			children = (
-				A61F07F5215F22720078D1B6 /* CocktailDbConstants.swift */,
 				A61F07F2215F21870078D1B6 /* CocktailDbClient.swift */,
+				A61F07F5215F22720078D1B6 /* CocktailDbConstants.swift */,
 			);
 			path = CocktailDbAPI;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				A61F07F6215F22720078D1B6 /* CocktailDbConstants.swift in Sources */,
 				A61F07DD215F1F6E0078D1B6 /* AppDelegate.swift in Sources */,
 				A61F07EF215F20D50078D1B6 /* CocktailDetailViewController.swift in Sources */,
+				A693CCD7215F288E00CF51E8 /* Cocktail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
