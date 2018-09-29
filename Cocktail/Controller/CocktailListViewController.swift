@@ -42,6 +42,8 @@ class CocktailListViewController: UIViewController {
 		super.viewDidLoad()
 		
 		
+		navigationItem.title = "Cocktail List"
+		
 		//TODO: luego mudar
 
 			// networking ⬇ : Cocktails
@@ -54,6 +56,19 @@ class CocktailListViewController: UIViewController {
 						if let resultCocktail = resultCocktail {
 							
 							self.cocktailArray = resultCocktail // 🔌 👏
+							
+						
+							// test
+							for item in self.cocktailArray {
+								
+								debugPrint("DRINK NAME:\(item.drinkName)")
+								debugPrint("DRINK THUMB:\(item.drinkThumb)")
+								debugPrint("DRINK ID:\(item.idDrink)")
+							}
+							debugPrint("cocktail array: \(self.cocktailArray.count)")
+							
+							
+							
 							//self.stopActivityIndicator()
 							//self.mediaTableView.reloadData()
 						}
@@ -68,12 +83,49 @@ class CocktailListViewController: UIViewController {
 	
 	
 	
-	
-	
-	
-		
-	
 	} // end class
+
+extension CocktailListViewController: UITableViewDataSource, UITableViewDelegate {
+	
+	// task: determinar la cantidad de filas que tendrá la tabla
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		debugPrint("los tragos contenidos en el array son \(cocktailArray.count)")
+		return cocktailArray.count
+		//return 10
+	}
+	
+	// task: configurar la celda de la tabla
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		debugPrint("HOLALAA")
+		let cellReuseId = "cell"
+		let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as UITableViewCell
+
+		cell.textLabel?.text = "prueba"
+		
+//		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
+//		debugPrint("😌\(cocktail)")
+//		cell.textLabel?.text = cocktail?.drinkName
+		
+
+		
+		
+		
+		return cell
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
 
 
 

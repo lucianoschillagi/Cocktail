@@ -15,6 +15,19 @@ import UIKit
 
 class CocktailDetailViewController: UIViewController {
 	
+	
+	
+	
+	//*****************************************************************
+	// MARK: - IBOutlets
+	//*****************************************************************
+	@IBOutlet weak var frameImage: UIView!
+	@IBOutlet weak var cocktailImage: UIImageView!
+	@IBOutlet weak var ingredients: UITextView!
+	@IBOutlet weak var howToPrepare: UILabel!
+	@IBOutlet weak var instructions: UITextView!
+	
+	
 	//*****************************************************************
 	// MARK: - VC Life Cycle
 	//*****************************************************************
