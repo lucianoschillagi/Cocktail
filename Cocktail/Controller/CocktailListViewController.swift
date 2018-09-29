@@ -11,14 +11,27 @@
 import UIKit
 
 /* Abstract:
+Una pantalla que contiene un listado de cocktails. Cada celda contiene el nombre, los ingredientes y la foto del trago.
 */
 
 class CocktailListViewController: UIViewController {
 	
-	
+	//*****************************************************************
+	// MARK: - Properties
+	//*****************************************************************
 	
 	var cocktail: Cocktail?
 	var cocktailArray = [Cocktail]()
+	
+	//*****************************************************************
+	// MARK: - IBOutlets
+	//*****************************************************************
+	
+	// la lista de tragos
+	@IBOutlet weak var cocktailTableView: UITableView!
+	
+	
+	
 	
 	
 	//*****************************************************************
@@ -52,10 +65,17 @@ class CocktailListViewController: UIViewController {
 				}
 			}
 		}
+	
+	
+	
+	
+	
+	
 		
-		
-		
-		
-	}
+	
+	} // end class
+
+
+
 
 
