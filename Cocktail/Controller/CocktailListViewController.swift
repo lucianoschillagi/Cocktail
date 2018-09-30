@@ -29,6 +29,7 @@ class CocktailListViewController: UIViewController {
 	
 	// la lista de tragos
 	@IBOutlet weak var cocktailTableView: UITableView!
+	@IBOutlet weak var networkActivity: UIActivityIndicatorView!
 	
 	//*****************************************************************
 	// MARK: - VC Life Cycle
@@ -51,22 +52,12 @@ class CocktailListViewController: UIViewController {
 						// comprueba si el 'resultMedia' recibido contiene algún valor
 						if let resultCocktail = resultCocktail {
 							
+							
 							self.cocktailArray = resultCocktail // 🔌 👏
+							self.networkActivity.stopAnimating()
 							self.cocktailTableView.reloadData()
 							
-							debugPrint("🧛🏻‍♂️\(self.cocktailArray.count)")
-						
-							// test
-							for item in self.cocktailArray {
-								
-								debugPrint("DRINK NAME:\(item.drinkName)")
-								debugPrint("DRINK THUMB:\(item.drinkThumb)")
-								debugPrint("DRINK ID:\(item.idDrink)")
-							}
-							debugPrint("cocktail array: \(self.cocktailArray.count)")
 							
-							//self.stopActivityIndicator()
-							//self.mediaTableView.reloadData()
 						}
 						
 					} else {
@@ -90,18 +81,13 @@ extension CocktailListViewController: UITableViewDataSource {
 	
 	// task: configurar la celda de la tabla
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-		debugPrint("HOLALAA")
+
 		let cellReuseId = "cell"
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as UITableViewCell
-
-		
 		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
-		debugPrint("😌\(cocktail)")
 		cell.textLabel?.text = cocktail?.drinkName
 		
 		return cell
-		
 	}
 	
 }
@@ -120,39 +106,6 @@ extension CocktailListViewController: UITableViewDataSource {
 				navigationController!.pushViewController(controller, animated: true)
 		}
 			
-	
-
-//		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//			let storyboardId = "Detail"
-//			let controller = storyboard!.instantiateViewController(withIdentifier: storyboardId) as! MovieDetailViewController
-//
-//			switch navigationItem.title {
-//
-//			case category["Explore"]:
-//				controller.selectedMovie = filteredMoviesArray[(indexPath as NSIndexPath).row]
-//				navigationController!.pushViewController(controller, animated: true)
-//
-//			case category["Popular Movies"]:
-//				controller.selectedMovie = popularMoviesArray[(indexPath as NSIndexPath).row]
-//				navigationController!.pushViewController(controller, animated: true)
-//
-//			case category["Top Rated Movies"]:
-//				controller.selectedMovie = topRatedMoviesArray[(indexPath as NSIndexPath).row]
-//				navigationController!.pushViewController(controller, animated: true)
-//
-//			case category["Upcoming Movies"]:
-//				controller.selectedMovie = upcomingMoviesArray[(indexPath as NSIndexPath).row]
-//				navigationController!.pushViewController(controller, animated: true)
-//
-//			default:
-//				print("")
-//			}
-//
-//		}
-	
-	
-	
 	
 	
 }
