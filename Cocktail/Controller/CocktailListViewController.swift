@@ -79,23 +79,14 @@ class CocktailListViewController: UIViewController {
 	
 	} // end class
 
-extension CocktailListViewController: UITableViewDataSource, UITableViewDelegate {
+extension CocktailListViewController: UITableViewDataSource {
+	
+	//*****************************************************************
+	// MARK: - Table View Data Source Methods
+	//*****************************************************************
 	
 	// task: determinar la cantidad de filas que tendrá la tabla
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//		print("chau")
-//		debugPrint("los tragos contenidos en el array son \(cocktailArray.count)")
-//
-//		var totalCocktails = Int()
-//
-//		if cocktailArray.count == 0 {
-//			print("entró?")
-//			totalCocktails = cocktailArray.count
-//		}
-//
-//		debugPrint("🙀\(totalCocktails)")
-		return cocktailArray.count
-	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return cocktailArray.count }
 	
 	// task: configurar la celda de la tabla
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,19 +100,56 @@ extension CocktailListViewController: UITableViewDataSource, UITableViewDelegate
 		debugPrint("😌\(cocktail)")
 		cell.textLabel?.text = cocktail?.drinkName
 		
-
-		
-		
-		
 		return cell
 		
 	}
 	
+}
 	
+	extension CocktailListViewController: UITableViewDelegate {
+		
+		//*****************************************************************
+		// MARK: - Table View Delegate Methods
+		//*****************************************************************
+		
+		// task: navegar hacia el detalle de la película (de acuerdo al listado de películas actual)
+		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+				let storyboardId = "Detail"
+				let controller = storyboard!.instantiateViewController(withIdentifier: storyboardId) as! CocktailDetailViewController
+				controller.selecteCocktail = cocktailArray[(indexPath as NSIndexPath).row]
+				navigationController!.pushViewController(controller, animated: true)
+		}
+			
 	
-	
-	
-	
+
+//		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//			let storyboardId = "Detail"
+//			let controller = storyboard!.instantiateViewController(withIdentifier: storyboardId) as! MovieDetailViewController
+//
+//			switch navigationItem.title {
+//
+//			case category["Explore"]:
+//				controller.selectedMovie = filteredMoviesArray[(indexPath as NSIndexPath).row]
+//				navigationController!.pushViewController(controller, animated: true)
+//
+//			case category["Popular Movies"]:
+//				controller.selectedMovie = popularMoviesArray[(indexPath as NSIndexPath).row]
+//				navigationController!.pushViewController(controller, animated: true)
+//
+//			case category["Top Rated Movies"]:
+//				controller.selectedMovie = topRatedMoviesArray[(indexPath as NSIndexPath).row]
+//				navigationController!.pushViewController(controller, animated: true)
+//
+//			case category["Upcoming Movies"]:
+//				controller.selectedMovie = upcomingMoviesArray[(indexPath as NSIndexPath).row]
+//				navigationController!.pushViewController(controller, animated: true)
+//
+//			default:
+//				print("")
+//			}
+//
+//		}
 	
 	
 	

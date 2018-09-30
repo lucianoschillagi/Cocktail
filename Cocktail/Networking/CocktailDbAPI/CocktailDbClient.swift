@@ -115,4 +115,62 @@ class CocktailApiClient: NSObject {
 	}
 	
 	
+	
+	// http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink} → Cocktail ID I.g.: http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
+	
+	// task: obtener los datos que contienen los detalles de cada trago
+	func getCocktailDetails (completionHandlerForGetCocktailsDetails: @escaping (_ success: Bool, _ result: [Cocktail]?, _ error: String?) -> Void) {
+		
+		/* 1. 📞 Realiza la llamada a la API, a través de la función request() de Alamofire 🚀 */
+		Alamofire.request("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108").responseJSON { response in
+			
+			debugPrint("🎬\(response)")
+			
+			// response status code
+			if let status = response.response?.statusCode {
+				switch(status){
+				case 200:
+					print("example success")
+				default:
+					let errorMessage = "error with response status: \(status)"
+					completionHandlerForGetCocktailsDetails(false, nil, errorMessage)
+				}
+			}
+			
+			/* 2. Almacena la respuesta del servidor (response.result.value) en la constante 'jsonObjectResult' 📦 */
+			if let jsonObjectResult: Any = response.result.value {
+				
+				debugPrint("☠️jsonObjectResult")
+				
+				let jsonObjectResultDictionary = jsonObjectResult as! [String:AnyObject]
+				
+				debugPrint("🤜JSON DETAIL COCKTAILS: \(jsonObjectResult)") // JSON obtenido
+				
+				if let results = jsonObjectResultDictionary["drinks"] {
+					
+					let resultsCocktailsDetails = Cocktail.drinkFromResults(results as! [[String : AnyObject]])
+					
+					//test
+					debugPrint("🤾🏼‍♂️ Cocktails...\(resultsCocktailsDetails)")
+					
+					completionHandlerForGetCocktailsDetails(true, resultsCocktailsDetails, nil)
+					
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }

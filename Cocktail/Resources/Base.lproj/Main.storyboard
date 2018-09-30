@@ -74,7 +74,7 @@
         <!--Cocktail Detail View Controller-->
         <scene sceneID="YMB-Y0-wkB">
             <objects>
-                <viewController id="VOX-7f-HBO" customClass="CocktailDetailViewController" customModule="Cocktail" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Detail" id="VOX-7f-HBO" customClass="CocktailDetailViewController" customModule="Cocktail" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ta3-2j-7Bk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

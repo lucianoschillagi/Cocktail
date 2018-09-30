@@ -17,8 +17,15 @@ class CocktailDetailViewController: UIViewController {
 	
 	
 	//*****************************************************************
+	// MARK: - Properties
+	//*****************************************************************
+	
+	var selecteCocktail: Cocktail?
+	
+	//*****************************************************************
 	// MARK: - IBOutlets
 	//*****************************************************************
+	
 	@IBOutlet weak var frameImage: UIView!
 	@IBOutlet weak var cocktailImage: UIImageView!
 	@IBOutlet weak var ingredients: UITextView!
