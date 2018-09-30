@@ -16,8 +16,6 @@ import UIKit
 class CocktailDetailViewController: UIViewController {
 	
 	
-	
-	
 	//*****************************************************************
 	// MARK: - IBOutlets
 	//*****************************************************************

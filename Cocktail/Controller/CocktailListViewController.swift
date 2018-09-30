@@ -30,18 +30,14 @@ class CocktailListViewController: UIViewController {
 	// la lista de tragos
 	@IBOutlet weak var cocktailTableView: UITableView!
 	
-	
-	
-	
-	
 	//*****************************************************************
 	// MARK: - VC Life Cycle
 	//*****************************************************************
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		
+		print("hola")
+		debugPrint("🧛🏻‍♂️🧛🏻‍♂️\(self.cocktailArray.count)")
 		navigationItem.title = "Cocktail List"
 		
 		//TODO: luego mudar
@@ -56,7 +52,9 @@ class CocktailListViewController: UIViewController {
 						if let resultCocktail = resultCocktail {
 							
 							self.cocktailArray = resultCocktail // 🔌 👏
+							self.cocktailTableView.reloadData()
 							
+							debugPrint("🧛🏻‍♂️\(self.cocktailArray.count)")
 						
 							// test
 							for item in self.cocktailArray {
@@ -66,8 +64,6 @@ class CocktailListViewController: UIViewController {
 								debugPrint("DRINK ID:\(item.idDrink)")
 							}
 							debugPrint("cocktail array: \(self.cocktailArray.count)")
-							
-							
 							
 							//self.stopActivityIndicator()
 							//self.mediaTableView.reloadData()
@@ -81,17 +77,24 @@ class CocktailListViewController: UIViewController {
 			}
 		}
 	
-	
-	
 	} // end class
 
 extension CocktailListViewController: UITableViewDataSource, UITableViewDelegate {
 	
 	// task: determinar la cantidad de filas que tendrá la tabla
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		debugPrint("los tragos contenidos en el array son \(cocktailArray.count)")
+//		print("chau")
+//		debugPrint("los tragos contenidos en el array son \(cocktailArray.count)")
+//
+//		var totalCocktails = Int()
+//
+//		if cocktailArray.count == 0 {
+//			print("entró?")
+//			totalCocktails = cocktailArray.count
+//		}
+//
+//		debugPrint("🙀\(totalCocktails)")
 		return cocktailArray.count
-		//return 10
 	}
 	
 	// task: configurar la celda de la tabla
@@ -101,11 +104,10 @@ extension CocktailListViewController: UITableViewDataSource, UITableViewDelegate
 		let cellReuseId = "cell"
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as UITableViewCell
 
-		cell.textLabel?.text = "prueba"
 		
-//		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
-//		debugPrint("😌\(cocktail)")
-//		cell.textLabel?.text = cocktail?.drinkName
+		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
+		debugPrint("😌\(cocktail)")
+		cell.textLabel?.text = cocktail?.drinkName
 		
 
 		
