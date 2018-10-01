@@ -97,8 +97,6 @@ extension CocktailListViewController: UITableViewDataSource {
 		
 		if let drinkId = cocktail?.idDrink {
 			
-			let drinkIdInt = Int(drinkId)
-			
 			let _ = CocktailApiClient.getCocktailImage((cocktail?.drinkThumb)!) { (imageData, error) in
 				
 				
@@ -119,22 +117,6 @@ extension CocktailListViewController: UITableViewDataSource {
 							}
 
 		}
-		
-		
-		// REF THE MOVIE MANAGER
-//		if let posterPath = movie.posterPath {
-//			let _ = TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandlerForImage: { (imageData, error) in
-//				if let image = UIImage(data: imageData!) {
-//					performUIUpdatesOnMain {
-//						cell?.imageView!.image = image
-//					}
-//				} else {
-//					print(error ?? "empty error")
-//				}
-//			})
-//		}
-		
-		
 		
 		return cell
 	}

@@ -72,11 +72,14 @@ class CocktailApiClient: NSObject {
 	//*****************************************************************
 	
 	
-	// MARK: Get Media for Search
+	// MARK: Get Cocktails
+	// task: obtener la lista de tragos
 	static func getCocktails(completionHandlerForGetCocktails: @escaping (_ success: Bool, _ result: [Cocktail]?, _ error: String?) -> Void)  {
 		
+		let cocktailUrl = "http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass"
+		
 		/* 1. 📞 Realiza la llamada a la API, a través de la función request() de Alamofire 🚀 */
-		Alamofire.request("http://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass").responseJSON { response in
+		Alamofire.request(cocktailUrl).responseJSON { response in
 			
 			debugPrint("🎬\(response)")
 			
@@ -118,11 +121,12 @@ class CocktailApiClient: NSObject {
 	
 	// http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink} → Cocktail ID I.g.: http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
 	
-	// task: obtener los datos que contienen los detalles de cada trago
-	func getCocktailDetails (completionHandlerForGetCocktailsDetails: @escaping (_ success: Bool, _ result: [Cocktail]?, _ error: String?) -> Void) {
+	// MARK: Get Detail Cocktails
+	// task: obtener los datos de los detalles de cada trago
+	static func getCocktailDetails (_ idDrink: String, _ completionHandlerForGetCocktailsDetails: @escaping (_ success: Bool, _ result: [Cocktail]?, _ error: String?) -> Void) {
 		
 		/* 1. 📞 Realiza la llamada a la API, a través de la función request() de Alamofire 🚀 */
-		Alamofire.request("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108").responseJSON { response in
+		Alamofire.request("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(idDrink)").responseJSON { response in
 			
 			debugPrint("🎬\(response)")
 			
@@ -170,7 +174,7 @@ class CocktailApiClient: NSObject {
 	}
 	
 	
-	// MARK: Get Images
+	// MARK: Get Cocktail Images
 	// task: obtener las imágenes de los tragos
 	static func getCocktailImage(_ imageUrl: String, _ completionHandlerForCocktailImage: @escaping ( _ imageData: Data?, _ error: String?) -> Void) {
 		

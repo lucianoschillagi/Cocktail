@@ -21,17 +21,17 @@ class CocktailDetailViewController: UIViewController {
 	//*****************************************************************
 	
 	var selecteCocktail: Cocktail?
+	var cocktailDetail = [Cocktail]()
 	
 	//*****************************************************************
 	// MARK: - IBOutlets
 	//*****************************************************************
 	
-	@IBOutlet weak var frameImage: UIView!
 	@IBOutlet weak var cocktailImage: UIImageView!
-	@IBOutlet weak var ingredients: UITextView!
-	@IBOutlet weak var howToPrepare: UILabel!
-	@IBOutlet weak var instructions: UITextView!
-	
+	@IBOutlet weak var ingredientsTitle: UILabel!
+	@IBOutlet weak var ingredientsText: UITextView!
+	@IBOutlet weak var prepareTitle: UILabel!
+	@IBOutlet weak var howToPrepare: UITextView!
 	
 	//*****************************************************************
 	// MARK: - VC Life Cycle
@@ -40,18 +40,67 @@ class CocktailDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+			
+			
+			// networking ⬇ : Cocktail Details
+			CocktailApiClient.getCocktailDetails((selecteCocktail?.idDrink)!) { (success, resultCocktailDetail, error) in
+				
+				DispatchQueue.main.async {
+					
+					if success {
+						// comprueba si el 'resultMedia' recibido contiene algún valor
+						if let resultCocktailDetail = resultCocktailDetail {
+							
+							
+							self.cocktailDetail = resultCocktailDetail // 🔌 👏
+							//self.networkActivity.stopAnimating()
+							
+							
+							self.navigationItem.title = self.selecteCocktail?.drinkName
+								
+							self.howToPrepare.text = self.selecteCocktail?.drinkInstructions
+								
+							debugPrint("😡\(resultCocktailDetail)")
+
+							for item in self.cocktailDetail {
+								
+								let ingredients = " -\(item.drinkIngredient1!) \n -\(item.drinkIngredient2!) \n -\(item.drinkIngredient3!) \n -\(item.drinkIngredient4!) \n -\(item.drinkIngredient5!)"
+								
+								self.ingredientsText.text = ingredients
+								self.howToPrepare.text = item.drinkInstructions
+								
+							}
+							
+							let _ = CocktailApiClient.getCocktailImage((self.selecteCocktail?.drinkThumb)!) { (imageData, error) in
+								
+								
+								
+								if let image = UIImage(data: imageData!) {
+									
+									DispatchQueue.main.async {
+
+										self.cocktailImage.image = image
+										
+									}
+								} else {
+									print(error ?? "empty error")
+								}
+							}
+							
+	
+						}
+						
+					} else {
+						// si devuelve un error
+						//self.displayAlertView(title: "Error Request", message: error)
+					}
+				}
+			}
+			
+			
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
 
 }
