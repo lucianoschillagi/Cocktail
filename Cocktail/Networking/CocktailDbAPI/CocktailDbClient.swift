@@ -172,13 +172,13 @@ class CocktailApiClient: NSObject {
 	
 	// MARK: Get Images
 	// task: obtener las imágenes de los tragos
-	static func getCocktailImage(_ cocktailId: Int, _ completionHandlerForCocktailImage: @escaping ( _ imageData: Data?, _ error: String?) -> Void) {
+	static func getCocktailImage(_ imageUrl: String, _ completionHandlerForCocktailImage: @escaping ( _ imageData: Data?, _ error: String?) -> Void) {
 		
 		
 		//http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=16108
 		
 		/* 1. 📞 Realiza la llamada a la API, a través de la función request() de Alamofire 🚀 */
-		Alamofire.request("http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(cocktailId)").responseData { response in
+		Alamofire.request(imageUrl).responseData { response in
 			
 			// response status code
 			if let status = response.response?.statusCode {

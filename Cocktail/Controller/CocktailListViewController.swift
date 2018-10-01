@@ -57,7 +57,13 @@ class CocktailListViewController: UIViewController {
 							self.networkActivity.stopAnimating()
 							self.cocktailTableView.reloadData()
 							
-							
+							//test
+							for item in self.cocktailArray {
+								
+								// las urls para obtener la imagenes de los tragos
+								debugPrint("la imagen del trago: \(item.drinkThumb!)")
+							}
+			
 						}
 						
 					} else {
@@ -82,7 +88,7 @@ extension CocktailListViewController: UITableViewDataSource {
 	// task: configurar la celda de la tabla
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		let preImageDrink = UIImage(named: "preImageMovie")
+		let preImageDrink = UIImage(named: "preImageDrink")
 		let cellReuseId = "cell"
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as UITableViewCell
 		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
@@ -93,15 +99,19 @@ extension CocktailListViewController: UITableViewDataSource {
 			
 			let drinkIdInt = Int(drinkId)
 			
-			let _ = CocktailApiClient.getCocktailImage(drinkIdInt!) { (imageData, error) in
+			let _ = CocktailApiClient.getCocktailImage((cocktail?.drinkThumb)!) { (imageData, error) in
 				
-				print("🧙🏽‍♀️\(imageData!)")
+				
 				
 								if let image = UIImage(data: imageData!) {
-									print("🔎\(image)")
+									
 									DispatchQueue.main.async {
-										
+										print("🧙🏽‍♀️ datos de la imagen\(imageData!), uimage: \(image)")
 										cell.imageView!.image = image
+										print("🔎\(image)")
+										
+										
+										
 									}
 								} else {
 									print(error ?? "empty error")
