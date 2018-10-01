@@ -81,11 +81,50 @@ extension CocktailListViewController: UITableViewDataSource {
 	
 	// task: configurar la celda de la tabla
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+		
+		let preImageDrink = UIImage(named: "preImageMovie")
 		let cellReuseId = "cell"
 		let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath) as UITableViewCell
 		cocktail = cocktailArray[(indexPath as NSIndexPath).row]
 		cell.textLabel?.text = cocktail?.drinkName
+		cell.imageView?.image = preImageDrink
+		
+		if let drinkId = cocktail?.idDrink {
+			
+			let drinkIdInt = Int(drinkId)
+			
+			let _ = CocktailApiClient.getCocktailImage(drinkIdInt!) { (imageData, error) in
+				
+				print("🧙🏽‍♀️\(imageData!)")
+				
+								if let image = UIImage(data: imageData!) {
+									print("🔎\(image)")
+									DispatchQueue.main.async {
+										
+										cell.imageView!.image = image
+									}
+								} else {
+									print(error ?? "empty error")
+								}
+							}
+
+		}
+		
+		
+		// REF THE MOVIE MANAGER
+//		if let posterPath = movie.posterPath {
+//			let _ = TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandlerForImage: { (imageData, error) in
+//				if let image = UIImage(data: imageData!) {
+//					performUIUpdatesOnMain {
+//						cell?.imageView!.image = image
+//					}
+//				} else {
+//					print(error ?? "empty error")
+//				}
+//			})
+//		}
+		
+		
 		
 		return cell
 	}
